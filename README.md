@@ -1,6 +1,6 @@
 # 🦊 frontend-template
 
-[![codecov](https://codecov.io/gh/schlaufuchs26/frontend-template/branch/main/graph/badge.svg)](https://codecov.io/gh/schlaufuchs26/frontend-template)
+![coverage](https://raw.githubusercontent.com/schlaufuchs26/frontend-template/badge/coverage.svg)
 
 Minimal [Bun](https://bun.sh) + TypeScript + React starter for static web projects. Ships to GitHub Pages, devs locally with HMR.
 
@@ -69,7 +69,7 @@ Tests auto-discover: `*.test.{ts,tsx}`, `*.spec.{ts,tsx}`.
 
 ### Coverage
 
-Coverage thresholds (80% lines/functions/statements) are enforced via `bunfig.toml`. The test workflow uploads `lcov.info` to [Codecov](https://codecov.io) — connect your repo at [codecov.io](https://app.codecov.io) to get the badge working.
+Coverage thresholds (80% lines/functions/statements) are enforced via `bunfig.toml`. On every push to `main`, the test workflow generates a coverage badge and force-pushes it to the `badge` branch — a single orphan commit, no history clutter. The badge above stays up to date with no external services.
 
 ```toml
 # bunfig.toml
@@ -78,7 +78,7 @@ coverageSkipTestFiles = true
 coverageThreshold = { lines = 0.8, functions = 0.8, statements = 0.8 }
 ```
 
-Coverage runs in CI on every push and PR. If coverage drops below 80%, the build fails.
+PRs get a sticky comment with per-file coverage. Coverage runs in CI on every push and PR. If coverage drops below 80%, the build fails.
 
 ### What's included
 
