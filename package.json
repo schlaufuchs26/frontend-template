@@ -12,7 +12,8 @@
     "format": "biome format --write .",
     "biome": "biome check --error-on-warnings .",
     "knip": "knip",
-    "checks": "bun run format && concurrently -g -c auto 'bun run tsc' 'bun run biome' 'bun run knip'"
+    "checks": "bun run format && concurrently -g -c auto 'bun run tsc' 'bun run biome' 'bun run knip'",
+    "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "react": "^19.1.0",
