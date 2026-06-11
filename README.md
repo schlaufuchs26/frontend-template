@@ -1,6 +1,6 @@
 # 🦊 frontend-template
 
-![coverage](https://raw.githubusercontent.com/schlaufuchs26/frontend-template/badge/coverage.svg)
+[![coverage](https://raw.githubusercontent.com/schlaufuchs26/frontend-template/badge/coverage.svg)](https://github.com/schlaufuchs26/frontend-template/actions/workflows/test.yml)
 
 Minimal [Bun](https://bun.sh) + TypeScript + React starter for static web projects. Ships to GitHub Pages, devs locally with HMR.
 
