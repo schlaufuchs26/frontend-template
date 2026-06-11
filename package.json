@@ -12,7 +12,8 @@
     "format": "biome format --write .",
     "lint": "biome lint .",
     "check": "biome check .",
-    "check:fix": "biome check --write ."
+    "check:fix": "biome check --write .",
+    "knip": "knip"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -23,6 +24,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "bun-types": "latest",
+    "knip": "^6.16.1",
     "typescript": "^5.7.0"
   }
 }
