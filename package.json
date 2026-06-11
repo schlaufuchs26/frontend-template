@@ -1,0 +1,20 @@
+{
+  "name": "bun-ts-template",
+  "version": "0.1.0",
+  "description": "Minimal Bun + TypeScript + React template for web projects",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot index.ts",
+    "build": "bun build frontend.tsx --outdir dist/ --target browser",
+    "start": "bun index.ts"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "bun-types": "latest"
+  }
+}
