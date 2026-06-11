@@ -1,5 +1,5 @@
 {
-  "name": "bun-ts-template",
+  "name": "frontend-template",
   "version": "0.1.0",
   "description": "Minimal Bun + TypeScript + React template for web projects",
   "type": "module",
