@@ -25,7 +25,7 @@ jobs:
           bun-version: latest
 
       - run: bun install
-      - run: bun run build:pages
+      - run: bun run build
 
       - uses: actions/upload-pages-artifact@v3
         with:

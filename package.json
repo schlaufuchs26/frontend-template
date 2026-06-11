@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun --hot index.ts",
-    "build": "bun build frontend.tsx --outdir dist/ --target browser",
-    "build:pages": "bun build frontend.tsx --outdir dist/ --target browser && cp pages.html dist/index.html",
+    "build": "bun build index.html --outdir dist/ --target browser",
     "start": "bun index.ts",
     "tsc": "tsc --pretty --noEmit",
     "format": "biome format --write .",
