@@ -4,9 +4,9 @@
   "description": "Minimal Bun + TypeScript + React template for web projects",
   "type": "module",
   "scripts": {
-    "dev": "bun --hot index.ts",
+    "dev": "bun index.html",
     "build": "bun build index.html --outdir dist/ --target browser",
-    "start": "bun index.ts",
+    "start": "bun index.html",
     "tsc": "tsc --pretty --noEmit",
     "format": "biome format --write .",
     "biome": "biome check --error-on-warnings .",

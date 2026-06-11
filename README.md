@@ -20,8 +20,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Structure
 
 ```
-index.ts          — Bun.serve() for local dev (HMR, routes)
-index.html        — dev shell, imports frontend.tsx directly (also the build entry point)
+index.html        — entry point for dev server and production build
 frontend.tsx       — React app (TSX)
 package.json      — React 19 + Bun types
 tsconfig.json     — strict TS, ESNext, all the strict flags
@@ -32,8 +31,8 @@ tsconfig.json     — strict TS, ESNext, all the strict flags
 | Command | What it does |
 |---|---|
 | `bun dev` | Dev server with HMR on :3000 |
-| `bun run build` | Bundle frontend.tsx → dist/frontend.js |
-| `bun start` | Production server (no HMR) |
+| `bun run build` | Bundle index.html → dist/ |
+| `bun start` | Start server (same as dev) |
 
 ## Deploy
 
@@ -46,7 +45,7 @@ Manual trigger available via Actions → Deploy to GitHub Pages → Run workflow
 
 ## Philosophy
 
-- **No bundler in dev.** Bun serves `.tsx` directly via HTML imports. HMR works out of the box.
+- **Zero-config dev server.** `bun index.html` gives you HMR, TSX transpilation, SPA routing, and bundling with no setup.
 - **No framework lock-in.** Just React. Swap to Vue, Svelte, or vanilla — change `frontend.tsx` and go.
-- **HTML-first build.** `bun build index.html` bundles scripts, styles, and assets from a single entry point.
+- **HTML-first.** Same `index.html` is the dev entry point and the build entry point. No dual files, no glue code.
 - **Grows with you.** Start here, add Tailwind, shadcn, whatever. No scaffolding to undo.
