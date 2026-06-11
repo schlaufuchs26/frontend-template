@@ -7,7 +7,8 @@
     "dev": "bun --hot index.ts",
     "build": "bun build frontend.tsx --outdir dist/ --target browser",
     "build:pages": "bun build frontend.tsx --outdir dist/ --target browser && cp pages.html dist/index.html",
-    "start": "bun index.ts"
+    "start": "bun index.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
-    "bun-types": "latest"
+    "bun-types": "latest",
+    "typescript": "^5.7.0"
   }
 }
