@@ -4,12 +4,19 @@ set -e
 echo "🔍 Running pre-commit checks..."
 
 # Run the checks script
-if bun run checks; then
-  echo "✅ All checks passed!"
-  exit 0
-else
+if ! bun run checks; then
   echo ""
   echo "❌ Pre-commit checks failed. Please fix the errors above before committing."
   echo "   Run 'bun run checks' locally to see the full output."
   exit 1
 fi
+
+# Run tests
+if ! bun test; then
+  echo ""
+  echo "❌ Tests failed. Please fix the failing tests before committing."
+  exit 1
+fi
+
+echo "✅ All checks passed!"
+exit 0
