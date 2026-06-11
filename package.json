@@ -8,11 +8,9 @@
     "build": "bun build frontend.tsx --outdir dist/ --target browser",
     "build:pages": "bun build frontend.tsx --outdir dist/ --target browser && cp pages.html dist/index.html",
     "start": "bun index.ts",
-    "typecheck": "tsc --noEmit",
+    "tsc": "tsc --pretty --noEmit",
     "format": "biome format --write .",
-    "lint": "biome lint .",
-    "check": "biome check .",
-    "check:fix": "biome check --write .",
+    "biome": "biome check --error-on-warnings .",
     "knip": "knip"
   },
   "dependencies": {
