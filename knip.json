@@ -1,5 +1,4 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "entry": ["frontend.tsx"],
-  "ignore": ["tests/matchers.d.ts"]
+  "entry": ["frontend.tsx"]
 }

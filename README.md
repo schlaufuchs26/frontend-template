@@ -26,10 +26,9 @@ package.json      — React 19 + Bun types
 tsconfig.json     — strict TS, ESNext, all the strict flags
 bunfig.toml       — test preload config
 tests/
-  happydom.ts       — registers DOM globals for testing
-  testing-library.ts — matchers + auto-cleanup
-  matchers.d.ts     — TS declarations for matchers
-  frontend.test.tsx — component tests
+  happydom.ts         — registers DOM globals for testing
+  testing-library.ts  — matchers + auto-cleanup + TS declarations
+  frontend.test.tsx   — component tests
 ```
 
 ## Scripts
@@ -65,9 +64,8 @@ Tests auto-discover: `*.test.{ts,tsx}`, `*.spec.{ts,tsx}`.
 
 | File | Purpose |
 |---|---|
-| `tests/happydom.ts` | Registers DOM globals (`window`, `document`, etc.) |
-| `tests/testing-library.ts` | Extends `expect` with DOM matchers + auto-cleanup |
-| `tests/matchers.d.ts` | TypeScript declarations for the matchers |
+| `tests/happydom.ts` | Registers DOM globals before anything else loads |
+| `tests/testing-library.ts` | Extends expect, auto-cleanup, TS declarations |
 | `bunfig.toml` | Tells Bun to preload the setup scripts before tests |
 
 Add more test files anywhere — `bun test` finds them automatically.
