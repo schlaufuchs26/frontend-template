@@ -8,13 +8,18 @@
     "build": "bun build frontend.tsx --outdir dist/ --target browser",
     "build:pages": "bun build frontend.tsx --outdir dist/ --target browser && cp pages.html dist/index.html",
     "start": "bun index.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "check": "biome check .",
+    "check:fix": "biome check --write ."
   },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.4.16",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "bun-types": "latest",

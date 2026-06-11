@@ -1,5 +1,5 @@
-import { createRoot } from "react-dom/client";
 import { useState } from "react";
+import { createRoot } from "react-dom/client";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -7,10 +7,13 @@ function App() {
   return (
     <div>
       <h1 style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>🦊</h1>
-      <h2 style={{ fontWeight: 400, color: "var(--muted)", marginBottom: "2rem" }}>
+      <h2
+        style={{ fontWeight: 400, color: "var(--muted)", marginBottom: "2rem" }}
+      >
         Bun + TypeScript + React
       </h2>
       <button
+        type="button"
         onClick={() => setCount((c) => c + 1)}
         style={{
           background: "var(--accent)",
@@ -30,5 +33,7 @@ function App() {
   );
 }
 
-const root = createRoot(document.getElementById("root")!);
+const el = document.getElementById("root");
+if (!el) throw new Error("No #root element found");
+const root = createRoot(el);
 root.render(<App />);
