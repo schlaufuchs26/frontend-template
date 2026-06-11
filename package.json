@@ -11,7 +11,8 @@
     "tsc": "tsc --pretty --noEmit",
     "format": "biome format --write .",
     "biome": "biome check --error-on-warnings .",
-    "knip": "knip"
+    "knip": "knip",
+    "checks": "bun run format && (bun run tsc & J1=$!; bun run biome & J2=$!; bun run knip & J3=$!; wait $J1 && wait $J2 && wait $J3)"
   },
   "dependencies": {
     "react": "^19.1.0",
