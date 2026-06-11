@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { App } from "./frontend";
+import { App } from "../frontend";
 
 describe("App", () => {
   test("renders the heading", () => {
