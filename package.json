@@ -12,7 +12,7 @@
     "format": "biome format --write .",
     "biome": "biome check --error-on-warnings .",
     "knip": "knip",
-    "checks": "bun run format && (bun run tsc & J1=$!; bun run biome & J2=$!; bun run knip & J3=$!; wait $J1 && wait $J2 && wait $J3)"
+    "checks": "bun run format && concurrently -g 'bun run tsc' 'bun run biome' 'bun run knip'"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -23,6 +23,7 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "bun-types": "latest",
+    "concurrently": "^10.0.3",
     "knip": "^6.16.1",
     "typescript": "^5.7.0"
   }
