@@ -22,6 +22,7 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 index.html        — entry point for dev server and production build
 frontend.tsx       — React app (TSX)
+frontend.test.ts   — example tests
 package.json      — React 19 + Bun types
 tsconfig.json     — strict TS, ESNext, all the strict flags
 ```
@@ -33,6 +34,7 @@ tsconfig.json     — strict TS, ESNext, all the strict flags
 | `bun dev` | Dev server with HMR on :3000 |
 | `bun run build` | Bundle index.html → dist/ |
 | `bun start` | Start server (same as dev) |
+| `bun test` | Run tests with Bun's built-in runner |
 
 ## Deploy
 
@@ -42,6 +44,34 @@ Push to `main` and GitHub Actions deploys to Pages automatically:
 - **Deploy:** `dist/` → `https://schlaufuchs26.github.io/frontend-template/`
 
 Manual trigger available via Actions → Deploy to GitHub Pages → Run workflow.
+
+## Testing
+
+Bun ships with a fast, Jest-compatible test runner — zero config, zero extra packages.
+
+```bash
+bun test                 # run all tests
+bun test --watch         # watch mode
+```
+
+Tests auto-discover: `*.test.ts`, `*.spec.ts`, `*_test.ts`, `*_spec.ts`.
+
+### React component tests
+
+For DOM-based component tests, install Happy DOM and Testing Library:
+
+```bash
+bun add -D @happy-dom/global-registrator @testing-library/react @testing-library/jest-dom
+```
+
+Then create a preload script and add it to `bunfig.toml`:
+
+```toml
+[test]
+preload = ["./happydom.ts"]
+```
+
+See Bun's [Testing Library guide](https://bun.com/docs/guides/test/testing-library) for full setup.
 
 ## Philosophy
 

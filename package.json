@@ -12,6 +12,7 @@
     "biome": "biome check --error-on-warnings .",
     "knip": "knip",
     "checks": "bun run format && concurrently -g -c auto 'bun run tsc' 'bun run biome' 'bun run knip'",
+    "test": "bun test",
     "prepare": "git config core.hooksPath .githooks"
   },
   "dependencies": {
