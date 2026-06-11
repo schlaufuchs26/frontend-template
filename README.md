@@ -1,5 +1,7 @@
 # 🦊 frontend-template
 
+[![codecov](https://codecov.io/gh/schlaufuchs26/frontend-template/branch/main/graph/badge.svg)](https://codecov.io/gh/schlaufuchs26/frontend-template)
+
 Minimal [Bun](https://bun.sh) + TypeScript + React starter for static web projects. Ships to GitHub Pages, devs locally with HMR.
 
 ## Quick Start
@@ -39,6 +41,9 @@ tests/
 | `bun run build` | Bundle index.html → dist/ |
 | `bun start` | Start server (same as dev) |
 | `bun test` | Run tests with Bun's built-in runner |
+| `bun run test:coverage` | Text coverage report |
+| `bun run test:ci` | Generate coverage/lcov.info for CI |
+| `bun run checks` | Format + typecheck + lint + dead code + tests |
 
 ## Deploy
 
@@ -54,11 +59,26 @@ Manual trigger available via Actions → Deploy to GitHub Pages → Run workflow
 Bun ships with a fast, Jest-compatible test runner. React component testing works out of the box with Happy DOM and Testing Library — pre-configured via `bunfig.toml`.
 
 ```bash
-bun test                 # run all tests
-bun test --watch         # watch mode
+bun test                   # run all tests
+bun run test:coverage      # text coverage report in terminal
+bun run test:ci            # generate coverage/lcov.info for CI
+bun test --watch           # watch mode
 ```
 
 Tests auto-discover: `*.test.{ts,tsx}`, `*.spec.{ts,tsx}`.
+
+### Coverage
+
+Coverage thresholds (80% lines/functions/statements) are enforced via `bunfig.toml`. The test workflow uploads `lcov.info` to [Codecov](https://codecov.io) — connect your repo at [codecov.io](https://app.codecov.io) to get the badge working.
+
+```toml
+# bunfig.toml
+[test]
+coverageSkipTestFiles = true
+coverageThreshold = { lines = 0.8, functions = 0.8, statements = 0.8 }
+```
+
+Coverage runs in CI on every push and PR. If coverage drops below 80%, the build fails.
 
 ### What's included
 
