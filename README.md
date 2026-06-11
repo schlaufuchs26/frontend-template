@@ -22,9 +22,10 @@ Open [http://localhost:3000](http://localhost:3000).
 ```
 index.html        — entry point for dev server and production build
 frontend.tsx       — React app (TSX)
-frontend.test.ts   — example tests
+frontend.test.tsx  — component tests
 package.json      — React 19 + Bun types
 tsconfig.json     — strict TS, ESNext, all the strict flags
+bunfig.toml       — test preload config
 ```
 
 ## Scripts
@@ -47,31 +48,25 @@ Manual trigger available via Actions → Deploy to GitHub Pages → Run workflow
 
 ## Testing
 
-Bun ships with a fast, Jest-compatible test runner — zero config, zero extra packages.
+Bun ships with a fast, Jest-compatible test runner. React component testing works out of the box with Happy DOM and Testing Library — pre-configured via `bunfig.toml`.
 
 ```bash
 bun test                 # run all tests
 bun test --watch         # watch mode
 ```
 
-Tests auto-discover: `*.test.ts`, `*.spec.ts`, `*_test.ts`, `*_spec.ts`.
+Tests auto-discover: `*.test.{ts,tsx}`, `*.spec.{ts,tsx}`.
 
-### React component tests
+### What's included
 
-For DOM-based component tests, install Happy DOM and Testing Library:
+| File | Purpose |
+|---|---|
+| `happydom.ts` | Registers DOM globals (`window`, `document`, etc.) |
+| `testing-library.ts` | Extends `expect` with DOM matchers (`toBeInTheDocument`, etc.) + auto-cleanup |
+| `matchers.d.ts` | TypeScript declarations for the matchers |
+| `bunfig.toml` | Tells Bun to preload the setup scripts before tests |
 
-```bash
-bun add -D @happy-dom/global-registrator @testing-library/react @testing-library/jest-dom
-```
-
-Then create a preload script and add it to `bunfig.toml`:
-
-```toml
-[test]
-preload = ["./happydom.ts"]
-```
-
-See Bun's [Testing Library guide](https://bun.com/docs/guides/test/testing-library) for full setup.
+Add more test files anywhere — `bun test` finds them automatically.
 
 ## Philosophy
 

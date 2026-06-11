@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
 
-function App() {
+export function App() {
   const [count, setCount] = useState(0);
 
   return (
@@ -34,6 +34,7 @@ function App() {
 }
 
 const el = document.getElementById("root");
-if (!el) throw new Error("No #root element found");
-const root = createRoot(el);
-root.render(<App />);
+if (el) {
+  const root = createRoot(el);
+  root.render(<App />);
+}
