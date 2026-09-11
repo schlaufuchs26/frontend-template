@@ -38,11 +38,21 @@ tests/              — Happy DOM + Testing Library setup, component tests
 | Command | What it does |
 |---|---|
 | `bun dev` | Dev server with HMR on :3000 |
-| `bun run build` | Bundle index.html → dist/ |
+| `bun run build` | Bundle index.html → dist/ (minified, production React) |
 | `bun test` | Run tests |
 | `bun run test:coverage` | Text coverage report |
 | `bun run test:ci` | Generate coverage/lcov.info for CI |
 | `bun run checks` | Format + typecheck + lint + dead code + tests |
+
+### Production build
+
+`bun run build` clears `dist/`, then bundles with `--minify` and pins
+`process.env.NODE_ENV="production"`. Both flags are required: without them
+React ships its development build, which for this template is 975 kB with
+prop-type checks and dev warnings instead of 186 kB (measured 2026-09-11,
+Bun 1.3.13). Verify a build with `grep -c "process.env" dist/*.js` (prints
+0 when the define applied); `tests/build.test.ts` runs the build and fails
+on dev-only code.
 
 ## Deploy
 
