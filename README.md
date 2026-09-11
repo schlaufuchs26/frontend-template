@@ -27,10 +27,12 @@ tsconfig.json       — strict TS, ESNext
 bunfig.toml         — test preload + coverage thresholds
 biome.json          — formatter + linter config
 knip.json           — dead code detection
+playwright.config.ts — browser-test config (dev-server, Chromium path)
 .githooks/          — pre-commit hook (runs bun run checks)
-.github/workflows/  — CI: test, lint, typecheck, deploy, dead code
+.github/workflows/  — CI: test, e2e, lint, typecheck, deploy, dead code
 scripts/            — coverage report + badge generators
 tests/              — Happy DOM + Testing Library setup, component tests
+e2e/                — Playwright browser tests (real Chromium)
 ```
 
 ## Scripts
@@ -40,6 +42,7 @@ tests/              — Happy DOM + Testing Library setup, component tests
 | `bun dev` | Dev server with HMR on :3000 |
 | `bun run build` | Bundle index.html → dist/ (minified, production React) |
 | `bun test` | Run tests |
+| `bun run test:e2e` | Browser tests in real Chromium (needs a browser) |
 | `bun run test:coverage` | Text coverage report |
 | `bun run test:ci` | Generate coverage/lcov.info for CI |
 | `bun run checks` | Format + typecheck + lint + dead code + tests |
@@ -77,6 +80,23 @@ bun test --watch           # watch mode
 ### Coverage
 
 Thresholds enforced at 80% lines/functions/statements. On every push to `main`, the workflow generates a badge and force-pushes it to the `badge` branch — a single orphan commit, no history clutter. PRs get a sticky comment with per-file coverage.
+
+### Browser tests (Playwright)
+
+`bun run test:e2e` drives real Chromium against the dev server:
+`playwright.config.ts` starts `bun index.html` on port 4173, and
+`e2e/smoke.playwright.ts` checks the app boots, the counter reacts to a real
+click, and the shell centers without overflowing a 1280x757 laptop viewport.
+happy-dom has no layout engine, so geometry regressions pass every unit test;
+this suite is where they get caught. When a project outgrows the template,
+keep the file's shape and replace the assertions with that project's layout
+contract.
+
+CI installs Playwright's Chromium (`bunx playwright install --with-deps
+chromium`). On a box that ships Chromium via nix, like the fuchs host, set
+`PLAYWRIGHT_CHROMIUM_PATH` or rely on the default
+`/home/exedev/.nix-profile/bin/chromium` when it exists. A failing run uploads
+its HTML report as a workflow artifact.
 
 ## Philosophy
 

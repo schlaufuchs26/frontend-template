@@ -3,3 +3,7 @@ dist/
 coverage/
 .env
 *.log
+
+# Playwright browser-test artifacts (ticket #1197)
+test-results/
+playwright-report/
